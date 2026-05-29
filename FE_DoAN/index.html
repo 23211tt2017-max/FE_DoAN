@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Salehub – Fashion Store</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Jost:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --black: #111;
+      --white: #fff;
+      --gray-light: #f5f5f5;
+      --gray-mid: #e0e0e0;
+      --gray-text: #888;
+      --accent: #111;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Jost', sans-serif;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--black);
+      background: var(--white);
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 60px;
+      border-bottom: 1px solid var(--gray-mid);
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 100;
+    }
+
+    .nav-left,
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .nav-left a,
+    .nav-right a {
+      text-decoration: none;
+      color: var(--black);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: .5px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #e5e5e5;
+      flex-wrap: wrap;
+    }
+
+    .footer-left,
+    .footer-right {
+      font-size: 12px;
+      color: #777;
+      letter-spacing: .5px;
+    }
+
+    .footer-payment img {
+      height: 38px;
+      object-fit: contain;
+      transition: 0.3s;
+    }
+
+    .footer-payment img:hover {
+      transform: scale(1.05);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding-top: 20px;
+      margin-top: 20px;
+      border-top: 1px solid #e5e5e5;
+      flex-wrap: wrap;
+    }
+
+    .footer-left,
+    .footer-right {
+      font-size: 12px;
+      color: #777;
+      letter-spacing: .5px;
+    }
+
+    .footer-payment img {
+      height: 38px;
+      object-fit: contain;
+      transition: 0.3s;
+    }
+
+    .footer-payment img:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-decoration: none;
+      color: var(--black);
+    }
+
+    .nav-right .icon {
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .cart-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--black);
+      color: var(--white) !important;
+      padding: 6px 14px;
+      border-radius: 2px;
+      font-size: 12px !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #e8eaf0;
+      padding: 0 80px;
+      min-height: 420px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-text {
+      max-width: 340px;
+    }
+
+    .hero-text h1 {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 14px;
+    }
+
+    .hero-text p {
+      font-size: 13px;
+      color: #444;
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .btn-hero {
+      display: inline-block;
+      background: var(--black);
+      color: var(--white);
+      padding: 12px 28px;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .hero-image {
+      width: 50%;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .hero-image img,
+    .product-img img,
+    .blog-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* placeholder images using picsum */
+    .hero-placeholder {
+      width: 420px;
+      height: 380px;
+      background: linear-gradient(135deg, #c9cfe8 0%, #a0aac8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: 14px;
+      overflow: hidden;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 60px 10px;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .section-header .tabs {
+      display: flex;
+      gap: 24px;
+    }
+
+    .section-header .tabs span {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      cursor: pointer;
+      color: var(--gray-text);
+      text-transform: uppercase;
+    }
+
+    .section-header .tabs span.active {
+      color: var(--black);
+      border-bottom: 1px solid var(--black);
+      padding-bottom: 2px;
+    }
+
+    .view-all {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      padding: 20px 60px 50px;
+    }
+
+    .product-card {
+      cursor: pointer;
+    }
+
+    .product-img {
+      aspect-ratio: 3/4;
+      background: var(--gray-light);
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .product-img .ph {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: .3px;
+    }
+
+    .product-card h4 {
+      font-size: 13px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .product-card .stars {
+      color: #f5a623;
+      font-size: 11px;
+      margin-bottom: 4px;
+    }
+
+    .product-card .price {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .product-card .price .old {
+      color: var(--gray-text);
+      text-decoration: line-through;
+      margin-left: 6px;
+      font-weight: 400;
+      font-size: 12px;
+    }
+
+    /* ── BANNER ── */
+    .banner {
+      background: #1a1a1a;
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 320px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .banner-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)),
+        url('public/images/slideshow-2_2fab53c9-6055-4722-bdcd-726f1eedc34d_1512x.webp') center/cover no-repeat;
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .banner-eyebrow {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      color: #ccc;
+    }
+
+    .banner h2 {
+      font-family: var(--font-display);
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .banner p {
+      font-size: 13px;
+      color: #ccc;
+      margin-bottom: 24px;
+    }
+
+    .btn-banner {
+      display: inline-block;
+      border: 1px solid var(--white);
+      color: var(--white);
+      padding: 11px 28px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+    }
+
+    .btn-banner:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 260px;
+      border-top: 1px solid var(--gray-mid);
+      border-bottom: 1px solid var(--gray-mid);
+      margin: 0 0 60px;
+    }
+
+    .testimonial-text {
+      padding: 50px 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .testimonial-text .stars-lg {
+      color: #f5a623;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+
+    .testimonial-text blockquote {
+      font-family: var(--font-display);
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .testimonial-text cite {
+      font-size: 12px;
+      color: var(--gray-text);
+      font-style: normal;
+    }
+
+    .testimonial-image {
+      background: var(--gray-light);
+      overflow: hidden;
+    }
+
+    .testimonial-image .ph {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      background: url('https://images.unsplash.com/photo-1519125323398-675f0ddb6308?w=700&q=80') center/cover;
+    }
+
+    /* ── BLOG ── */
+    .blog-section {
+      padding: 0 60px 60px;
+    }
+
+    .blog-section h2 {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .blog-card .blog-img {
+      aspect-ratio: 4/3;
+      background: var(--gray-light);
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .blog-card .blog-img .ph {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .blog-card h4 {
+      font-family: var(--font-display);
+      font-size: 15px;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .blog-card p {
+      font-size: 12px;
+      color: var(--gray-text);
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .blog-card .meta {
+      font-size: 11px;
+      color: var(--gray-text);
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    /* ── PERKS ── */
+    .perks {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 30px 60px;
+      border-top: 1px solid var(--gray-mid);
+      border-bottom: 1px solid var(--gray-mid);
+      margin-bottom: 50px;
+    }
+
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .perk-icon {
+      font-size: 28px;
+    }
+
+    .perk-text h5 {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .perk-text p {
+      font-size: 11px;
+      color: var(--gray-text);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--gray-mid);
+      padding: 50px 60px 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col h5 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+
+    .footer-col p,
+    .footer-col a {
+      font-size: 12px;
+      color: #555;
+      line-height: 2;
+      text-decoration: none;
+      display: block;
+    }
+
+    .footer-col a:hover {
+      color: var(--black);
+    }
+
+    .footer-col .newsletter-row {
+      display: flex;
+      margin-top: 10px;
+    }
+
+    .footer-col input {
+      flex: 1;
+      border: 1px solid var(--gray-mid);
+      padding: 9px 12px;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .footer-col button {
+      background: var(--black);
+      color: var(--white);
+      border: none;
+      padding: 9px 14px;
+      font-size: 11px;
+      cursor: pointer;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--gray-text);
+      border-top: 1px solid var(--gray-mid);
+      padding-top: 16px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-icon {
+      font-size: 16px;
+      cursor: pointer;
+      color: var(--black);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 16px;
+        height: 52px;
+      }
+
+      .nav-left {
+        gap: 0;
+      }
+
+      .nav-left a:not(.hamburger) {
+        display: none;
+      }
+
+      .hamburger {
+        display: block !important;
+        font-size: 22px;
+        cursor: pointer;
+      }
+
+      .nav-right .hide-mobile {
+        display: none;
+      }
+
+      .hero {
+        flex-direction: column;
+        padding: 30px 20px;
+        min-height: auto;
+        text-align: center;
+      }
+
+      .hero-text {
+        max-width: 100%;
+      }
+
+      .hero-text h1 {
+        font-size: 26px;
+      }
+
+      .hero-image {
+        width: 100%;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .hero-placeholder {
+        width: 100%;
+        height: 240px;
+      }
+
+      .section-header {
+        padding: 30px 16px 8px;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .section-header .tabs {
+        gap: 12px;
+        overflow-x: auto;
+      }
+
+      .section-header h2 {
+        font-size: 22px;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 12px 16px 36px;
+      }
+
+      .banner h2 {
+        font-size: 34px;
+      }
+
+      .testimonial-row {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial-text {
+        padding: 30px 20px;
+      }
+
+      .testimonial-image {
+        display: none;
+      }
+
+      .blog-section {
+        padding: 0 16px 40px;
+      }
+
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .perks {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px 20px;
+        align-items: flex-start;
+      }
+
+      footer {
+        padding: 30px 20px 16px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hamburger {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-left">
+      <span class="hamburger">&#9776;</span>
+      <a href="#">Home</a>
+      <a href="#">Pages</a>
+      <a href="#">Women</a>
+      <a href="#">Men</a>
+      <a href="#">Blog</a>
+    </div>
+    <a class="nav-logo" href="#">
+      <img src="public/images/logo_350x.png" alt="Salehub Logo" style="height:40px;">
+    </a>
+    <div class="nav-right">
+      <a href="#" class="hide-mobile">&#128269;</a>
+      <a href="#" class="hide-mobile">Sign In</a>
+      <a href="#" class="cart-btn">&#128722; My Cart 0</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+    
+    <div class="hero-image">
+       <div class="model-col">
+      <img src="public/images/slideshow-2_2fab53c9-6055-4722-bdcd-726f1eedc34d_1512x.webp" alt="" />
+    </div>
+ 
+    <!-- CENTER: Nội dung -->
+    <div class="center-col">
+      <div class="divider"></div>
+      <div class="hero-text">
+      <h1>Oversized Denim Jacket</h1>
+      <p>Oversized jacket in washed denim with distressed details. Collar buttons at front and dropped shoulders. Chest
+        pockets with flap button, side pockets and buttons at cuffs.</p>
+      <a href="#" class="btn-hero">Shop Now</a>
+    </div>
+    </div>
+ 
+    <!-- RIGHT: Thay src bên dưới bằng ảnh sản phẩm của bạn -->
+    <div class="product-col">
+      <img src="public/images/slideshow-5_540x.jpg" alt="" />
+    </div>
+    </div>
+  </section>
+
+  <!-- FOR HER -->
+  <div class="section-header">
+    <div class="tabs">
+      <span class="active">Outerwear</span>
+      <span>Tops &amp; Tees</span>
+      <span>Bottoms</span>
+      <span>Dresses</span>
+      <span>Jackets</span>
+    </div>
+    <h2>For Her</h2>
+    <a href="#" class="view-all">View All Collection</a>
+  </div>
+
+  <div class="product-grid">
+    <!-- Row 1 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_35559729-bb4f-477a-afbb-d695451b9719_540x.jpg" alt="Product">
+      </div>
+      <h4>Eco Aurora organic cotton top</h4>
+      <div class="stars">★★★★★</div>
+      <div class="price">$26.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_7bb38758-0669-4713-864a-f6723b07f307_540x.jpg" alt="Product">
+      </div>
+      <h4>Embossed knit cardigan</h4>
+      <div class="stars">★★★★★</div>
+      <div class="price">$36.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_53da1618-42cb-4e03-99df-eed042020709_720x.webp" alt="Product">
+      </div>
+      <h4>Lightweight fitted jumper</h4>
+      <div class="stars">★★★★☆</div>
+      <div class="price">$75.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_4b6df0cc-511d-4f31-8475-08b1346b1921_540x.jpg" alt="Product">
+      </div>
+      <h4>High-turtleneck jumper</h4>
+      <div class="stars">★★★☆☆</div>
+      <div class="price">$67.15</div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_d8a840f3-d40e-4d28-8191-715f1a7874e4_720x.jpg" alt="Product">
+      </div>
+      <h4>Basic modal jogger</h4>
+      <div class="stars">★★★★★</div>
+      <div class="price">$9.90 <span class="old">$18.00</span></div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_f73a583d-2a96-44a3-a9c1-165fc36b3c76_540x.jpg" alt="Product">
+      </div>
+      <h4>Basic jumper for women</h4>
+      <div class="stars">★★★★★</div>
+      <div class="price">$11.90</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_03acadda-8612-4062-8e97-25a1650c714f_540x (1).jpg" alt="Product">
+      </div>
+      <h4>Coat with low-rise collar</h4>
+      <div class="stars">★★★☆☆</div>
+      <div class="price">$44.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_5c0c329d-da3c-4361-a786-e33ac5ea5498_540x.jpg" alt="Product">
+      </div>
+      <h4>Cardigan with pockets</h4>
+      <div class="stars">★★★★☆</div>
+      <div class="price">$39.00</div>
+    </div>
+  </div>
+
+  <!-- AUTUMN BANNER -->
+  <section class="banner">
+    <div class="banner-bg"></div>
+    <div class="banner-content">
+      <p class="banner-eyebrow">New Arrivals</p>
+      <h2>Autumn is Coming</h2>
+      <p>The 11 Biggest Autumn/Winter 2023 Trends</p>
+      <a href="#" class="btn-banner">View More</a>
+    </div>
+  </section>
+
+  <!-- FOR HIM -->
+  <div class="section-header">
+    <div class="tabs">
+      <span class="active">Outerwear</span>
+      <span>Tops &amp; Tees</span>
+      <span>Jackets</span>
+      <span>Bottoms</span>
+      <span>Jackets</span>
+    </div>
+    <h2>For Him</h2>
+    <a href="#" class="view-all">View All Collection</a>
+  </div>
+
+  <div class="product-grid">
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_fb07f6fc-f4bb-46a9-966d-1a0b66e6960a_540x.jpg" alt="Product">
+      </div>
+      <h4>Classic over kneed jacket</h4>
+      <div class="stars">★★★★★</div>
+      <div class="price">$49.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_afb70b63-ea30-4380-b7d3-8e5e765569aa_540x.jpg" alt="Product">
+      </div>
+      <h4>Black Denim Jacket</h4>
+      <div class="stars">★★★★★</div>
+      <div class="price">$80.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_e6fe8d6a-e054-4a68-ae4c-84dfb4f66d48_540x.jpg" alt="Product">
+      </div>
+      <h4>T-shirt with slogan</h4>
+      <div class="stars">★★★☆☆</div>
+      <div class="price">$200.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_d0fab98a-800a-4656-ad83-a1ad17efc924_540x.jpg" alt="Product">
+      </div>
+      <h4>Blended shirt coat</h4>
+      <div class="stars">★★★★☆</div>
+      <div class="price">$77.00</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_423afc51-89a7-412d-b94e-1905f35af736_540x.jpg" alt="Product">
+      </div>
+      <h4>Black Bomber Jacket</h4>
+      <div class="stars">★★★★☆</div>
+      <div class="price">$66.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_225b9840-5824-4a66-801e-fa5640519db5_540x.jpg" alt="Product">
+      </div>
+      <h4>Lightweight bomber jacket</h4>
+      <div class="stars">★★★★★</div>
+      <div class="price">$70.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_96a01a8d-3536-48d8-83ec-6279e0ee6f8e_540x.jpg" alt="Product">
+      </div>
+      <h4>Transition jacket with hood</h4>
+      <div class="stars">★★★★☆</div>
+      <div class="price">$80.00</div>
+    </div>
+    <div class="product-card">
+      <div class="product-img">
+        <img src="public/images/1_34ccf0b4-eca9-4653-9154-f1d88213386f_540x.jpg" alt="Product">
+      </div>
+      <h4>Classic shirt pocket</h4>
+      <div class="stars">★★★★★</div>
+      <div class="price">$24.00</div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIAL -->
+  <div class="testimonial-row">
+    <div class="testimonial-text">
+      <div class="stars-lg">★★★★★</div>
+      <blockquote>"Best purchase I've made this winter! The color and knitting are exquisite and it's so comfy! Went
+        from NYC to Miami without ever taking it off. Super cute!!"</blockquote>
+      <cite>— J.L., 18 | from Canada</cite>
+      <div style="display:flex; gap:8px; margin-top:20px;">
+        <button
+          style="background:none;border:1px solid #ddd;width:30px;height:30px;cursor:pointer;font-size:14px;">&#8249;</button>
+        <button
+          style="background:none;border:1px solid #ddd;width:30px;height:30px;cursor:pointer;font-size:14px;">&#8250;</button>
+      </div>
+    </div>
+    <div class="testimonial-image">
+      <div class="ph" style="background:url('public/images/tes_1_1080x.png') center/cover;"></div>
+    </div>
+  </div>
+
+  <!-- BLOG -->
+  <section class="blog-section">
+    <h2>From Our Blog</h2>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="public/images/blog-1_900x.png" style="width:100%;height:100%;object-fit:cover;" alt="Blog">
+        </div>
+        <h4>5 Sweet Outfit Ideas You'll Wear Well Beyond Valentine's Day</h4>
+        <p>Valentine's Day 2024 has come and we are here to talk about the things that will never get old — a couple of
+          romantic outfits that work beyond the holiday.</p>
+        <p class="meta">&#128197; By Cynthia Stones &nbsp;&nbsp; &#128172; 0</p>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="public/images/blog-3_900x.png" style="width:100%;height:100%;object-fit:cover;" alt="Blog">
+        </div>
+        <h4>How To Be "Good With Money" According To 4 Female Financial Experts</h4>
+        <p>TikTok is filled with personal finance advice and life hacks. While some creators offer truly useful advice,
+          others can lead astray with overly simplistic guidance.</p>
+        <p class="meta">&#128197; By Cynthia Stones &nbsp;&nbsp; &#128172; 0</p>
+      </div>
+      <div class="blog-card">
+        <div class="blog-img">
+          <img src="public/images/blog-2_900x.png" style="width:100%;height:100%;object-fit:cover;" alt="Blog">
+        </div>
+        <h4>This Zaoeii Influencer's Disco Collaboration Is The Gift That Keeps On Giving</h4>
+        <p>We love that in 2024 there is so much to talk about when it comes to fashion and beauty — from the big
+          designer collabs to what's happening on social.</p>
+        <p class="meta">&#128197; By Cynthia Stones &nbsp;&nbsp; &#128172; 0</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERKS -->
+  <div class="perks">
+    <div class="perk">
+      <div class="perk-icon">🚚</div>
+      <div class="perk-text">
+        <h5>Free Shipping</h5>
+        <p>On all order of $50 or another above</p>
+      </div>
+    </div>
+    <div class="perk">
+      <div class="perk-icon">🎧</div>
+      <div class="perk-text">
+        <h5>Support 24/7</h5>
+        <p>Contact us on any time you need, 7 days a week</p>
+      </div>
+    </div>
+    <div class="perk">
+      <div class="perk-icon">🔄</div>
+      <div class="perk-text">
+        <h5>30 Days Return</h5>
+        <p>Simply return it within 30 days for an exchange</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>About The Store</h5>
+        <p>We help people discover and shop their style quickly and effortlessly. Discover fashion for Men's, Women's,
+          Accessories &amp; Kids styles by visiting Salehub.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Customer Support</h5>
+        <a href="#">Contact Us</a>
+        <a href="#">Shipping &amp; Delivery</a>
+        <a href="#">Size Chart</a>
+        <a href="#">FAQ</a>
+        <a href="#">Email Signup</a>
+        <a href="#">Accessibility</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="#">Privacy</a>
+        <a href="#">Cookie Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">CA Cookies</a>
+      </div>
+      <div class="footer-col">
+        <h5>Newsletter</h5>
+        <p>Get 10% off all your first purchase. Be the first to know about our new products, new products and special
+          offers by subscribing.</p>
+        <div class="newsletter-row">
+          <div class="newsletter-image">
+            <img src="public/images/send_mail-hover (2).png" alt="Newsletter" style="width:100%; height:auto;">
+          </div>
+          <button>GO</button>
+        </div>
+        <div class="socials" style="margin-top:16px;">
+          <span class="social-icon">𝕏</span>
+          <span class="social-icon">f</span>
+          <span class="social-icon">in</span>
+          <span class="social-icon">📷</span>
+          <span class="social-icon">▶</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Privacy · Cookie Preferences · Terms of Use · CA Cookies · Cookies · Cookies</span>
+      <span>Copyright © 2023 salehubwill · All rights reserved.</span>
+      <div class="footer-bottom">
+
+        <div class="footer-payment">
+          <img src="public/images/paypal_415b5ae4-daaf-4b21-9943-accf6f6bdb42_240x (1).png" alt="Payment Methods">
+        </div>
+
+        <div class="footer-right">
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
